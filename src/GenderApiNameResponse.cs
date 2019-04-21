@@ -16,25 +16,25 @@ namespace MicroKnights.Gender_API
         /// <summary>
         /// Submitted name in lower case
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// The name after we applied our normalizer to it
         /// </summary>
         [JsonProperty("Name_Sanitized")]
-        public string NameSanitized { get; }
+        public string NameSanitized { get; set; }
 
         /// <summary>
         /// Submitted country code
         /// </summary>
-        public string Country { get; }
+        public string Country { get; set; }
 
         public CountryType CountryType => CountryType.ParseOrDefault(Country, CountryType.Unknown);
 
         /// <summary>
         /// Possible values: male, female, unknown
         /// </summary>
-        public string Gender { get; }
+        public string Gender { get; set; }
 
         [JsonIgnore]
         public GenderType GenderType => GenderType.ParseOrDefault(Gender, GenderType.Unkown);
@@ -42,22 +42,22 @@ namespace MicroKnights.Gender_API
         /// <summary>
         /// Number of records found in our database which match your request
         /// </summary>
-        public int Sample { get; }
+        public int Sample { get; set; }
 
         /// <summary>
         /// This value determines the reliability of our database. A value of 100 means that the results on your gender request are 100% accurate
         /// </summary>
-        public int Accuracy { get; }
+        public int Accuracy { get; set; }
 
         /// <summary>
         /// Time the server needed to process the request
         /// </summary>
-        public string Duration { get; }
+        public string Duration { get; set; }
 
         /// <summary>
         /// The amount of credits used for this query
         /// </summary>
         [JsonProperty("Credits_Used")]
-        public int CreditsUsed { get; }
+        public int CreditsUsed { get; set; }
     }
 }

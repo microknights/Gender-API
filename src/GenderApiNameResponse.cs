@@ -29,7 +29,7 @@ namespace MicroKnights.Gender_API
         /// </summary>
         public string Country { get; set; }
 
-        public CountryType CountryType => CountryType.ParseOrDefault(Country, CountryType.Unknown);
+        public CountryType CountryType => CountryType.GetByAlpha2CodeOrDefault(Country, CountryType.Unknown);
 
         /// <summary>
         /// Possible values: male, female, unknown

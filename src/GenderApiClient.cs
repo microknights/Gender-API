@@ -66,19 +66,19 @@ namespace MicroKnights.Gender_API
             return ExecuteRequest<GenderApiNameResponse>($"get?name={GetUrlFormatted(name)}&locale={browserLanguageLocale}");
         }
 
-        public Task<GenderApiNameResponse> GetByEmail(string email)
+        public Task<GenderApiEmailResponse> GetByEmail(string email)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?email={GetUrlFormatted(email)}");
+            return ExecuteRequest<GenderApiEmailResponse>($"get?email={GetUrlFormatted(email)}");
         }
 
-        public Task<GenderApiNameResponse> GetByEmailandCountryType(string email, CountryType countryType)
+        public Task<GenderApiEmailResponse> GetByEmailAndCountryType(string email, CountryType countryType)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?email={GetUrlFormatted(email)}&country={countryType.Alpha2Code}");
+            return ExecuteRequest<GenderApiEmailResponse>($"get?email={GetUrlFormatted(email)}&country={countryType.Alpha2Code}");
         }
 
-        public Task<GenderApiResponse> GetByEmailandCountry2Alpha(string email, string country2AlphaCode)
+        public Task<GenderApiEmailResponse> GetByEmailAndCountry2Alpha(string email, string country2AlphaCode)
         {
-            return ExecuteRequest<GenderApiResponse>($"get?email={GetUrlFormatted(email)}&country={country2AlphaCode}");
+            return ExecuteRequest<GenderApiEmailResponse>($"get?email={GetUrlFormatted(email)}&country={country2AlphaCode}");
         }
     }
 }

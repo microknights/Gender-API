@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MicroKnights.Enumerations.Country;
 using Newtonsoft.Json;
 
 namespace MicroKnights.Gender_API
@@ -19,7 +21,7 @@ namespace MicroKnights.Gender_API
         {
             try
             {
-                using (var client = _httpClientFactory.CreateClient("GenderAPI"))
+                using (var client = _httpClientFactory.CreateClient(ConfigurationExtension.ServiceName))
                 {
 
                     var key = client.DefaultRequestHeaders.Authorization.Parameter;
@@ -39,40 +41,44 @@ namespace MicroKnights.Gender_API
             }
         }
 
+        protected virtual string GetUrlFormatted(string str)
+        {
+            return WebUtility.UrlEncode(str);
+        }
 
         public Task<GenderApiNameResponse> GetByNameAndCountry2Alpha(string name, string country2AlphaCode)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?name={name}&country={country2AlphaCode}");
+            return ExecuteRequest<GenderApiNameResponse>($"get?name={GetUrlFormatted(name)}&country={country2AlphaCode}");
         }
 
         public Task<GenderApiNameResponse> GetByNameAndCountryType(string name, CountryType countryType)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?name={name}&country={countryType.Alpha2Code}");
+            return ExecuteRequest<GenderApiNameResponse>($"get?name={GetUrlFormatted(name)}&country={countryType.Alpha2Code}");
         }
 
         public Task<GenderApiNameResponse> GetByNameAndIp(string name, string ipAddresss)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?name={name}&ip={ipAddresss}");
+            return ExecuteRequest<GenderApiNameResponse>($"get?name={GetUrlFormatted(name)}&ip={ipAddresss}");
         }
 
         public Task<GenderApiNameResponse> GetByNameAndBrowserLanguageLocale(string name, string browserLanguageLocale)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?name={name}&locale={browserLanguageLocale}");
+            return ExecuteRequest<GenderApiNameResponse>($"get?name={GetUrlFormatted(name)}&locale={browserLanguageLocale}");
         }
 
         public Task<GenderApiNameResponse> GetByEmail(string email)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?email={email}");
+            return ExecuteRequest<GenderApiNameResponse>($"get?email={GetUrlFormatted(email)}");
         }
 
         public Task<GenderApiNameResponse> GetByEmailandCountryType(string email, CountryType countryType)
         {
-            return ExecuteRequest<GenderApiNameResponse>($"get?email={email}&country={countryType.Alpha2Code}");
+            return ExecuteRequest<GenderApiNameResponse>($"get?email={GetUrlFormatted(email)}&country={countryType.Alpha2Code}");
         }
 
         public Task<GenderApiResponse> GetByEmailandCountry2Alpha(string email, string country2AlphaCode)
         {
-            return ExecuteRequest<GenderApiResponse>($"get?email={email}&country={country2AlphaCode}");
+            return ExecuteRequest<GenderApiResponse>($"get?email={GetUrlFormatted(email)}&country={country2AlphaCode}");
         }
     }
 }

@@ -18,6 +18,19 @@ For running, register at https://gender-api.com to get a `ApiKey` (free to some 
 
 The Test are using a UserSecret for `ApiKey`, under `Gender-API:ApiKey`.
 
+# Initialize
+A startup with `ServiceCollection`:
+```
+    services.UseGenderAPI("<ApiKey>");
+```
+
+and your code
+
+```
+    var client = ServiceProvider.GetRequiredService<GenderApiClient>();
+    var response = await client.GetByNameAndCountryType(name, CountryType.Denmark);
+```
+
 # NuGet available
 ```
 PM> Install-Package MicroKnights.Gender-API

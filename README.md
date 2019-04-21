@@ -1,7 +1,7 @@
 # Gender-API
 C# impl. of https://gender-api.com
 
-So far follwing methods are implemented:
+So far following methods are implemented:
 
 ```
 Task<GenderApiNameResponse> GetByNameAndCountry2Alpha(string name, string country2AlphaCode);
@@ -19,7 +19,7 @@ For running, register at https://gender-api.com to get a `ApiKey` (free to some 
 The Test are using a UserSecret for `ApiKey`, under `Gender-API:ApiKey`.
 
 # Initialize
-A startup with `ServiceCollection`:
+At startup with `ServiceCollection`:
 ```
     services.UseGenderAPI("<ApiKey>");
 ```

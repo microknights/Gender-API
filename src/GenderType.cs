@@ -8,8 +8,11 @@ namespace MicroKnights.Gender_API
             : base(value, displayName)
         {}
 
-        public static readonly GenderType Unkown = new GenderType(0,"unknown");
+        public static readonly GenderType Undetermined = new GenderType(-1, "undetermined");
+        public static readonly GenderType Unknown = new GenderType(0,"unknown");
         public static readonly GenderType Male = new GenderType(1,"male");
         public static readonly GenderType Female = new GenderType(2,"female");
+
+        public bool IsGenderKnown => Value > 0;
     }
 }

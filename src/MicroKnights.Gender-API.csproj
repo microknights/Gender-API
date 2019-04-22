@@ -13,10 +13,10 @@
     <PackageProjectUrl>https://github.com/microknights/Gender-API</PackageProjectUrl>
     <RepositoryUrl>https://github.com/microknights/Gender-API</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>Changed target to .Net Standard</PackageReleaseNotes>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
-    <Version>1.1.0</Version>
+    <PackageReleaseNotes>Fixed typo in Unknown state, and added Undetermined</PackageReleaseNotes>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -37,7 +37,7 @@ namespace MicroKnights.Gender_API
         public string Gender { get; set; }
 
         [JsonIgnore]
-        public GenderType GenderType => GenderType.ParseOrDefault(Gender, GenderType.Unkown);
+        public GenderType GenderType => GenderType.ParseOrDefault(Gender, GenderType.Unknown);
 
         /// <summary>
         /// Number of records found in our database which match your request

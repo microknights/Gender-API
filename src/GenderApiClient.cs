@@ -64,6 +64,13 @@ namespace MicroKnights.Gender_API
             return ExecuteRequest<GenderApiNameResponse>($"get?name={GetUrlFormatted(name)}&country={countryType.Alpha2Code}");
         }
 
+        public Task<GenderApiMultipleNamesResponse> GetByMultipleNames(IEnumerable<string> names)
+        {
+            var namesArray = names as string[] ?? names?.ToArray();
+            if (namesArray == null || namesArray.Any(string.IsNullOrWhiteSpace)) throw new ArgumentException("Value(s) cannot be null or whitespace.", nameof(names));
+            return ExecuteRequest<GenderApiMultipleNamesResponse>($"get?name={string.Join(";", namesArray.Select(GetUrlFormatted))}&multi=true");
+        }
+
         public Task<GenderApiMultipleNamesResponse> GetByMultipleNamesAndCountries2Alpha(IEnumerable<string> names, IEnumerable<string> country2AlphaCodes)
         {
             var namesArray = names as string[] ?? names?.ToArray();

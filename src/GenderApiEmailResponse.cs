@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MicroKnights.Gender_API
 {
-    public class GenderApiEmailResponse : GenderApiNameResponse
+    public class GenderApiEmailResponse : GenderApiFullnameResponse
     {
         public GenderApiEmailResponse()
         {}
@@ -16,18 +16,6 @@ namespace MicroKnights.Gender_API
         /// Submitted email address
         /// </summary>
         public string Email { get; set; }
-
-        /// <summary>
-        /// The last name found
-        /// </summary>
-        [JsonProperty("last_name")]
-        public string LastName { get; set; }
-
-        /// <summary>
-        /// The last name found
-        /// </summary>
-        [JsonProperty("first_name")]
-        public string FirstName { get; set; }
 
         /// <summary>
         /// The last name found

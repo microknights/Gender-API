@@ -12,7 +12,7 @@ namespace MicroKnights.Gender_API
         protected GenderApiResponse(Exception exception)
         {
             Exception = exception;
-            IsSuccess = exception != null;
+            IsSuccess = exception == null;
         }
 
         public bool IsSuccess { get; }

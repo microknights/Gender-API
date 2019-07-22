@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http.Headers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroKnights.Gender_API
@@ -14,9 +13,12 @@ namespace MicroKnights.Gender_API
             services.AddHttpClient(ServiceName, c =>
             {
                 c.BaseAddress = new Uri("https://gender-api.com");
-                c.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
             });
 
+            services.AddSingleton(new GenderApiConfiguration
+            {
+                ApiKey = apiKey
+            });
             services.AddSingleton<GenderApiClient>();
 
             return services;

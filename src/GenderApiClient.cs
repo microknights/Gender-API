@@ -12,10 +12,12 @@ namespace MicroKnights.Gender_API
     public class GenderApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly GenderApiConfiguration _configuration;
 
-        public GenderApiClient(IHttpClientFactory httpClientFactory)
+        public GenderApiClient(IHttpClientFactory httpClientFactory, GenderApiConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
 
         protected virtual async Task<TResponse> ExecuteRequest<TResponse>(string method, IDictionary<string,object> parameters) where TResponse : GenderApiResponse
@@ -24,7 +26,7 @@ namespace MicroKnights.Gender_API
             {
                 using (var client = _httpClientFactory.CreateClient(ConfigurationExtension.ServiceName))
                 {
-                    parameters.Add("key", client.DefaultRequestHeaders.Authorization.Parameter);
+                    parameters.Add("key", _configuration.ApiKey);
                     var urlParams = string.Join("&", parameters.Select(p => $"{p.Key}={p.Value.ToString()}"));
                     var jsonResult = await client.GetStringAsync($"{method}?{urlParams}");
                     if (jsonResult.IndexOf("errno", StringComparison.InvariantCultureIgnoreCase) > 0)

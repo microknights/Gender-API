@@ -25,7 +25,7 @@ namespace MicroKnights.Gender_API
                 using (var client = _httpClientFactory.CreateClient(ConfigurationExtension.ServiceName))
                 {
                     parameters.Add("key", client.DefaultRequestHeaders.Authorization.Parameter);
-                    var urlParams = string.Join("&", parameters.Select(p => $"{p.Key}={GetUrlFormatted(p.Value.ToString())}"));
+                    var urlParams = string.Join("&", parameters.Select(p => $"{p.Key}={p.Value.ToString()}"));
                     var jsonResult = await client.GetStringAsync($"{method}?{urlParams}");
                     if (jsonResult.IndexOf("errno", StringComparison.InvariantCultureIgnoreCase) > 0)
                     {

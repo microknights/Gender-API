@@ -22,8 +22,9 @@ namespace Gender_API_Test
         private IServiceProvider GetConfigureServices(IConfiguration configuration)
         {
             var services = new ServiceCollection();
-            services.AddHttpClient()
-                    .UseGenderAPI(configuration["Gender-API:ApiKey"]);
+//            services.AddHttpClient()
+//                .UseGenderAPI(configuration["Gender-API:ApiKey"]);
+            services.UseGenderAPI(configuration["Gender-API:ApiKey"]);
             return services.BuildServiceProvider();
         }
     }

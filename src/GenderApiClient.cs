@@ -11,12 +11,12 @@ namespace MicroKnights.Gender_API
 {
     public class GenderApiClient
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
         private readonly GenderApiConfiguration _configuration;
 
-        public GenderApiClient(IHttpClientFactory httpClientFactory, GenderApiConfiguration configuration)
+        public GenderApiClient(HttpClient httpClient, GenderApiConfiguration configuration)
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClient = httpClient;
             _configuration = configuration;
         }
 
@@ -24,19 +24,15 @@ namespace MicroKnights.Gender_API
         {
             try
             {
-                using (var client = _httpClientFactory.CreateClient(ConfigurationExtension.ServiceName))
+                parameters.Add("key", _configuration.ApiKey);
+                var urlParams = string.Join("&", parameters.Select(p => $"{p.Key}={p.Value.ToString()}"));
+                var jsonResult = await _httpClient.GetStringAsync($"{method}?{urlParams}");
+                if (jsonResult.IndexOf("errno", StringComparison.InvariantCultureIgnoreCase) > 0)
                 {
-                    parameters.Add("key", _configuration.ApiKey);
-                    var urlParams = string.Join("&", parameters.Select(p => $"{p.Key}={p.Value.ToString()}"));
-                    var jsonResult = await client.GetStringAsync($"{method}?{urlParams}");
-                    if (jsonResult.IndexOf("errno", StringComparison.InvariantCultureIgnoreCase) > 0)
-                    {
-                        var error = JsonConvert.DeserializeObject<GenderApiErrorResponse>(jsonResult);
-                        return (TResponse)Activator.CreateInstance(typeof(TResponse),new GenderApiException(error.ErrorCode,error.ErrorMessage));
-                    }
-                    return JsonConvert.DeserializeObject<TResponse>(jsonResult);
+                    var error = JsonConvert.DeserializeObject<GenderApiErrorResponse>(jsonResult);
+                    return (TResponse)Activator.CreateInstance(typeof(TResponse),new GenderApiException(error.ErrorCode,error.ErrorMessage));
                 }
-
+                return JsonConvert.DeserializeObject<TResponse>(jsonResult);
             }
             catch (Exception ex)
             {

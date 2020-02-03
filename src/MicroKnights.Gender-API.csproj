@@ -1,5 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,29 +9,27 @@
     <Authors>Frank Løvendahl Nielsen</Authors>
     <Company>MicroKnights ApS</Company>
     <Description>C# Implementation of https://gender-api.com</Description>
-    <Copyright>2019 MicroKnights ApS</Copyright>
+    <Copyright>2020 MicroKnights ApS</Copyright>
     <PackageProjectUrl>https://github.com/microknights/Gender-API</PackageProjectUrl>
     <RepositoryUrl>https://github.com/microknights/Gender-API</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes>Multiple names and statistics added</PackageReleaseNotes>
-    <AssemblyVersion>1.3.0.0</AssemblyVersion>
-    <FileVersion>1.2.0.0</FileVersion>
-    <Version>1.3.0</Version>
+    <AssemblyVersion>1.3.1.0</AssemblyVersion>
+    <FileVersion>1.2.1.0</FileVersion>
+    <Version>1.3.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <UserSecretsId>f6dd6cf4-1de2-40df-95de-6ca95c1f735b</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="MicroKnights.Collections" Version="1.1.3" />
     <PackageReference Include="MicroKnights.Enumerations" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-
 </Project>

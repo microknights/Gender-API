@@ -42,7 +42,14 @@ namespace MicroKnights.Gender_API
         /// <summary>
         /// Number of records found in our database which match your request
         /// </summary>
-        public int Sample { get; set; }
+        [Obsolete("Use Samples instead",false)]
+        public int Sample
+        {
+            set => Samples = value;
+            get => Samples; 
+        }
+
+        public int Samples { get; set; }
 
         /// <summary>
         /// This value determines the reliability of our database. A value of 100 means that the results on your gender request are 100% accurate

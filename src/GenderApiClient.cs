@@ -54,6 +54,15 @@ namespace MicroKnights.Gender_API
             });
         }
 
+        public Task<GenderApiNameResponse> GetByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(name));
+            return ExecuteRequest<GenderApiNameResponse>("get", new Dictionary<string, object>
+            {
+                { "name", GetUrlFormatted(name) }
+            });
+        }
+
         public Task<GenderApiNameResponse> GetByNameAndCountryType(string name, CountryType countryType)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(name));

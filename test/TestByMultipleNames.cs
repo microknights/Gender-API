@@ -61,10 +61,10 @@ namespace Gender_API_Test
         [InlineData("Elina","Julia","Uma","Ane","Johanna")]
         [InlineData("Jasmin","Ingeborg","Dicte","Amelia","Vilja")]
         [InlineData("Stella","Anne","Bella","Flora","Aura")]
-        [InlineData("Amanda")]
+//        [InlineData("Amanda")] // Dont call with single name, use GetByName instead
         [InlineData("Lina","Mie")]
 //        [InlineData("Lilje")] // reponse: unknown
-        [InlineData("My")]
+//        [InlineData("My")] // Dont call with single name, use GetByName instead
 //        [InlineData("Bjørk")] // reponse: male
         [InlineData("Alice","Cecilie","Ava","Martha","Maggie")]
         [InlineData("Melina","Iben","Frederikke","Rose")]

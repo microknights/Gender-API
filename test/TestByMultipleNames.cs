@@ -28,7 +28,7 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByMultipleNames(names);
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.Result.All(r => r.GenderType == GenderType.Male), $"GenderTypes != Male ({string.Join(",",response.Result.Where(r => r.GenderType != GenderType.Male).Select(r => r.Name))})");
         }
 
@@ -50,7 +50,7 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByMultipleNamesAndCountryTypes(names, Enumerable.Repeat(CountryType.Denmark, names.Length));
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.Result.All(r=>r.GenderType == GenderType.Male), $"GenderTypes != Male ({string.Join(",", response.Result.Where(r=>r.GenderType != GenderType.Male).Select(r=>r.Name))})");
         }
 
@@ -73,7 +73,7 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByMultipleNamesAndCountryTypes(names, Enumerable.Repeat(CountryType.Denmark, names.Length));
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.Result.All(r => r.GenderType == GenderType.Female), $"GenderTypes != Female ({string.Join(",", response.Result.Where(r => r.GenderType != GenderType.Female).Select(r => r.Name))})");
         }
 

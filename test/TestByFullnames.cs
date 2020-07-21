@@ -20,7 +20,7 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByFullnameAndCountryType(name, CountryType.Denmark);
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.GenderType == GenderType.Male, $"GenderType != Male ({response.GenderType.DisplayName})");
         }
 
@@ -33,7 +33,7 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByFullnameAndCountryType(name, CountryType.Denmark);
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.GenderType == GenderType.Female, $"GenderType != Female ({response.GenderType.DisplayName})");
         }
 

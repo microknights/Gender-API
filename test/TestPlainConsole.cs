@@ -29,7 +29,7 @@ namespace Gender_API_Test
                 });
 
             var response = await client.GetStatistics();
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.IsLimitReached == false, $"IsLimitReached == true");
         }
     }

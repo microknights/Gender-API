@@ -65,7 +65,7 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByNameAndCountryType(name, CountryType.Denmark);
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.GenderType == GenderType.Male, $"GenderType != Male ({response.GenderType.DisplayName})");
         }
 
@@ -121,8 +121,23 @@ namespace Gender_API_Test
         {
             var client = ServiceProvider.GetRequiredService<GenderApiClient>();
             var response = await client.GetByNameAndCountryType(name, CountryType.Denmark);
-            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception.Message}");
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
             Assert.True(response.GenderType == GenderType.Female, $"GenderType != Female ({response.GenderType.DisplayName})");
+        }
+
+        [Theory]
+        [InlineData("Atlas", "male")]
+        [InlineData("Asbj�rn", "male")]
+        [InlineData("Martha", "female")]
+        [InlineData("Maggie", "female")]
+        public async Task TestOnlyByName(string name, string genderTypeDisplayName)
+        {
+            var client = ServiceProvider.GetRequiredService<GenderApiClient>();
+            var response = await client.GetByName(name);
+            Assert.True(response.IsSuccess, $"IsSuccess == false | {response.Exception?.Message}");
+            
+            Assert.True(GenderType.TryParse(genderTypeDisplayName, out var genderType));
+            Assert.True(response.GenderType == genderType, $"{response.GenderType.DisplayName} != {genderType.DisplayName})");
         }
 
     }

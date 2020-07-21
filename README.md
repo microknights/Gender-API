@@ -17,6 +17,7 @@ Task<GenderApiEmailResponse> GetByEmail(string email)
 Task<GenderApiEmailResponse> GetByEmailAndCountryType(string email, CountryType countryType)
 Task<GenderApiEmailResponse> GetByEmailAndCountry2Alpha(string email, string country2AlphaCode)
 
+Task<GenderApiNameResponse> GetByName(string name)
 Task<GenderApiFullnameResponse> GetByFullname(string name, bool strict = false)
 Task<GenderApiFullnameResponse> GetByFullnameAndCountry2Alpha(string name, string country2AlphaCode, bool strict = false)
 Task<GenderApiFullnameResponse> GetByFullnameAndCountryType(string name, CountryType countryType, bool strict = false)
